@@ -25,12 +25,12 @@ const NFTCardBody = styled.div`
   text-align: left;
 `;
 
-const NFTImg = styled.img`
-  height: 250px;
-  width: 250px;
-  // border-radius: 5px;
-  background-color: #f0f0f0;
-`;
+// const NFTImg = styled.img`
+//   height: 250px;
+//   width: 250px;
+//   // border-radius: 5px;
+//   background-color: #f0f0f0;
+// `;
 
 const NFTTitle = styled.p`
   max-width: 100%;

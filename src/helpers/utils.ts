@@ -1,5 +1,3 @@
-import { constants } from "os";
-
 export const formatAddressShort = (address: string): string | null => {
   if (!address) {
     return null;
