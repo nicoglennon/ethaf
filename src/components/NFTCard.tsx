@@ -25,12 +25,16 @@ const NFTCardBody = styled.div`
   text-align: left;
 `;
 
-// const NFTImg = styled.img`
-//   height: 250px;
-//   width: 250px;
-//   // border-radius: 5px;
-//   background-color: #f0f0f0;
-// `;
+const NFTImg = styled.div<{ imageUrl: string }>`
+  background-image: ${(p) => `url(${p.imageUrl})`};
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 250px;
+  width: 250px;
+  // border-radius: 5px;
+  background-color: #f0f0f0;
+`;
 
 const NFTTitle = styled.p`
   max-width: 100%;
@@ -56,7 +60,7 @@ interface Props {
 const NFTCard: React.FC<Props> = ({ nft }) => {
   return (
     <Card>
-      {/* <NFTImg src={nft.image_preview_url} alt={nft.name} /> */}
+      <NFTImg imageUrl={nft.image_preview_url} />
       <NFTCardBody>
         <NFTTitle>{nft.name}</NFTTitle>
         <NFTSubtitle>{nft.asset_contract.name}</NFTSubtitle>

@@ -9,6 +9,8 @@ import CategoriesMenu from "./CategoriesMenu";
 import WalletHeader from "./WalletHeader";
 import Collections from "./Collections";
 import TokenList from "./TokenList";
+import Trail from "./Trail";
+import Spinner from "./Spinner/Spinner";
 import { apiGetAccountUniqueTokens } from "../apis/opensea-api";
 import { apiGetERC20Tokens } from "../apis/ethplorer-api";
 import { Categories } from "../helpers/constants";
@@ -107,37 +109,46 @@ const Wallet: React.FC<Props> = () => {
       <Navbar />
       <div>
         {loadingWalletHeader ? (
-          "loading wallet..."
+          <Trail>
+            <Spinner />
+          </Trail>
         ) : (
-          <WalletHeader
-            walletId={walletId}
-            ensAddress={ensAddress}
-            ethBalance={ethBalance}
-          />
-        )}
-        <CategoriesMenu
-          selectedCategory={selectedCategory}
-          handleSelectCategory={handleSelectCategory}
-        />
-        {selectedCategory === Categories.COLLECTIONS && (
           <>
-            {loadingNFTs || !NFTs || isEmpty(NFTs) ? (
-              "loading collections..."
-            ) : (
-              <Collections
-                NFTs={NFTs}
-                selectedContract={selectedContract}
-                handleContractClick={handleContractClick}
-              />
+            <WalletHeader
+              walletId={walletId}
+              ensAddress={ensAddress}
+              ethBalance={ethBalance}
+            />
+
+            <CategoriesMenu
+              selectedCategory={selectedCategory}
+              handleSelectCategory={handleSelectCategory}
+            />
+            {selectedCategory === Categories.COLLECTIONS && (
+              <>
+                {loadingNFTs || !NFTs || isEmpty(NFTs) ? (
+                  <Trail>
+                    <Spinner />
+                  </Trail>
+                ) : (
+                  <Collections
+                    NFTs={NFTs}
+                    selectedContract={selectedContract}
+                    handleContractClick={handleContractClick}
+                  />
+                )}
+              </>
             )}
-          </>
-        )}
-        {selectedCategory === Categories.TOKENS && (
-          <>
-            {loadingTokens || !tokens ? (
-              "loading tokens..."
-            ) : (
-              <TokenList tokens={tokens} />
+            {selectedCategory === Categories.TOKENS && (
+              <>
+                {loadingTokens || !tokens ? (
+                  <Trail>
+                    <Spinner />
+                  </Trail>
+                ) : (
+                  <TokenList tokens={tokens} />
+                )}
+              </>
             )}
           </>
         )}
