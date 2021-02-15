@@ -13,10 +13,11 @@ const NavbarContainer = styled.div`
 `;
 
 const AppTitle = styled.h1`
+  text-align: left;
   margin: 15px 25px;
   font-weight: 700;
   padding: 0px;
-  font-size: 40px;
+  font-size: 20px;
 `;
 
 const Navbar: React.FC = () => {

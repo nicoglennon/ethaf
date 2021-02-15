@@ -9,6 +9,10 @@ body {
   background-color: #f8f8f8;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

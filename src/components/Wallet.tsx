@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ethers } from "ethers";
-import { useSpring, animated } from "react-spring";
+import { isEmpty } from "lodash";
+// import { useSpring, animated } from "react-spring";
 import styled from "styled-components";
 import Navbar from "./Navbar";
-import { apiGetAccountUniqueTokens } from "../helpers/opensea-api";
+import CategoriesMenu from "./CategoriesMenu";
+import WalletHeader from "./WalletHeader";
+import Collections from "./Collections";
+import TokenList from "./TokenList";
+import { apiGetAccountUniqueTokens } from "../apis/opensea-api";
+import { apiGetERC20Tokens } from "../apis/ethplorer-api";
+import { Categories } from "../helpers/constants";
 declare global {
   interface Window {
     ethereum: any;
@@ -17,35 +24,27 @@ interface Params {
   walletParam: string;
 }
 
-// const ContainerMain = styled.div`
-//   background-color: rgb(249, 245, 241);
-// `;
-// const OuterMain = styled.div`
-//   width: 100%;
-//   position: absolute;
-//   top: 50%;
-//   -ms-transform: translateY(-50%);
-//   transform: translateY(-50%);
-// `;
-
-// const InnerMain = styled.div`
-//   margin: auto;
-//   max-width: 300px;
-//   min-height: 300px;
-//   overflow-wrap: anywhere;
-//   border-radius: 25px;
-//   padding: 30px;
-//   background-color: #fffefc;
-//   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.075);
-// `;
+const WalletWrapper = styled.div`
+  padding: 40px 30px;
+  max-width: 850px;
+  margin: auto;
+  text-align: center;
+`;
 
 const Wallet: React.FC<Props> = () => {
   const { walletParam } = useParams<Params>();
   const [walletId, setWalletId] = useState<string>("");
-  const [ethBalance, setEthBalance] = useState<string>();
-  const [NFTs, setNFTs] = useState([]);
-  const [loadingNFTs, setLoadingNFTs] = useState(true);
-  const [loadingEthBalance, setLoadingEthBalance] = useState(true);
+  const [ensAddress, setEnsAddress] = useState<string>();
+  const [ethBalance, setEthBalance] = useState<string>("");
+  const [NFTs, setNFTs] = useState<object>();
+  const [tokens, setTokens] = useState<Array<object>>();
+  const [selectedCategory, setSelectedCategory] = useState<string>(
+    Categories.COLLECTIONS
+  );
+  const [selectedContract, setSelectedContract] = useState<string>();
+  const [loadingNFTs, setLoadingNFTs] = useState<boolean>(true);
+  const [loadingTokens, setLoadingTokens] = useState<boolean>(true);
+  const [loadingWalletHeader, setLoadingWalletHeader] = useState(true);
 
   useEffect(() => {
     const getWeb3 = async () => {
@@ -58,65 +57,92 @@ const Wallet: React.FC<Props> = () => {
       if (walletParam.length === 42) {
         setWalletId(walletParam);
         addressParam = walletParam;
+        const ensAddy = await provider.lookupAddress(addressParam);
+        setEnsAddress(ensAddy);
       } else {
         addressParam = walletParam + ".eth";
         const walletAddress = await provider.resolveName(addressParam);
         setWalletId(walletAddress);
+        setEnsAddress(addressParam);
       }
       const bigNumberBalance = await provider.getBalance(addressParam);
-      const balance = ethers.utils.formatEther(bigNumberBalance);
-      setEthBalance(balance);
-      setLoadingEthBalance(false);
+      const balance = await ethers.utils.formatEther(bigNumberBalance);
+      const balanceNumber = Number(balance).toFixed(5).toString();
+      setEthBalance(balanceNumber);
+      setLoadingWalletHeader(false);
     };
     getWeb3();
   }, [walletParam]);
 
   useEffect(() => {
     const getNFTs = async (wId: string) => {
-      const tokens = await apiGetAccountUniqueTokens(wId);
-      setNFTs(tokens);
+      const nfts = await apiGetAccountUniqueTokens(wId);
+      setNFTs(nfts);
       setLoadingNFTs(false);
+    };
+
+    const getERC20s = async (wId: string) => {
+      const tokens = await apiGetERC20Tokens(wId);
+      setTokens(tokens);
+      setLoadingTokens(false);
+      console.log("ERC20", tokens);
     };
     if (walletId) {
       getNFTs(walletId);
+      getERC20s(walletId);
     }
   }, [walletId]);
 
+  const handleContractClick = (contractName: string): void => {
+    setSelectedContract(contractName);
+  };
+
+  const handleSelectCategory = (newCategory: string): void => {
+    setSelectedCategory(newCategory);
+    setSelectedContract(undefined);
+  };
+
   return (
-    <>
+    <WalletWrapper>
       <Navbar />
       <div>
-        <p>url param: {walletParam}</p>
-        {loadingEthBalance && loadingNFTs && NFTs ? (
-          "loading..."
+        {loadingWalletHeader ? (
+          "loading wallet..."
         ) : (
+          <WalletHeader
+            walletId={walletId}
+            ensAddress={ensAddress}
+            ethBalance={ethBalance}
+          />
+        )}
+        <CategoriesMenu
+          selectedCategory={selectedCategory}
+          handleSelectCategory={handleSelectCategory}
+        />
+        {selectedCategory === Categories.COLLECTIONS && (
           <>
-            <p>address: {walletId}</p>
-            <p>balance: {ethBalance}</p>
-            <p>NFTs:</p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 20 }}>
-              {NFTs.map((nft: any) => (
-                <div
-                  style={{
-                    width: 250,
-                    padding: 20,
-                    backgroundColor: "#fff",
-                    borderRadius: 20,
-                  }}
-                >
-                  <p>{nft.asset_contract.name}</p>
-                  <img src={nft.image_preview_url} alt={nft.name} />
-                  <p>
-                    <strong>{nft.name}</strong>
-                  </p>
-                  {/* <p>{nft.description}</p> */}
-                </div>
-              ))}
-            </div>
+            {loadingNFTs || !NFTs || isEmpty(NFTs) ? (
+              "loading collections..."
+            ) : (
+              <Collections
+                NFTs={NFTs}
+                selectedContract={selectedContract}
+                handleContractClick={handleContractClick}
+              />
+            )}
+          </>
+        )}
+        {selectedCategory === Categories.TOKENS && (
+          <>
+            {loadingTokens || !tokens ? (
+              "loading tokens..."
+            ) : (
+              <TokenList tokens={tokens} />
+            )}
           </>
         )}
       </div>
-    </>
+    </WalletWrapper>
   );
 };
 
