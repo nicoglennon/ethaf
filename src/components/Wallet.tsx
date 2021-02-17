@@ -8,6 +8,7 @@ import WalletHeader from "./WalletHeader";
 import Collections from "./Collections";
 import TokenList from "./TokenList";
 import Trail from "./Trail";
+import FadeIn from "./FadeIn";
 import Spinner from "./Spinner/Spinner";
 // import Footer from "./Footer";
 import NFTDetailsModal from "./NFTDetailsModal";
@@ -149,12 +150,14 @@ const Wallet: React.FC<Props> = () => {
                   />
                 )}
                 {selectedNFTDetail && (
-                  <NFTDetailsModal
-                    nft={selectedNFTDetail}
-                    closeModal={() => {
-                      setSelectedNFTDetail(null);
-                    }}
-                  />
+                  <FadeIn>
+                    <NFTDetailsModal
+                      nft={selectedNFTDetail}
+                      closeModal={() => {
+                        setSelectedNFTDetail(null);
+                      }}
+                    />
+                  </FadeIn>
                 )}
               </>
             )}
