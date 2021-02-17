@@ -26,17 +26,19 @@ interface Props {
   NFTs?: any;
   selectedContract: string | undefined;
   handleContractClick: (nftKey: string) => void;
+  handleNFTClick: (nft: any) => void;
 }
 
 const Collections: React.FC<Props> = ({
   NFTs,
   selectedContract,
   handleContractClick,
+  handleNFTClick,
 }) => {
   return (
     <>
-      <Trail>
-        <ContractPillWrapper>
+      <ContractPillWrapper>
+        <Trail>
           {Object.keys(NFTs).map((nftKey: string) => (
             <ContractPill
               key={nftKey}
@@ -46,15 +48,19 @@ const Collections: React.FC<Props> = ({
               handleContractClick={handleContractClick}
             />
           ))}
-        </ContractPillWrapper>
-      </Trail>
+        </Trail>
+      </ContractPillWrapper>
       {selectedContract && (
         <>
           <h3>{selectedContract}</h3>
           <Trail key={selectedContract}>
             <NFTsWrapper>
               {NFTs[selectedContract].map((nft: any) => (
-                <NFTCard nft={nft} key={nft.id} />
+                <NFTCard
+                  nft={nft}
+                  key={nft.id}
+                  handleNFTClick={handleNFTClick}
+                />
               ))}
             </NFTsWrapper>
           </Trail>

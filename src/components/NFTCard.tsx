@@ -55,14 +55,18 @@ const NFTSubtitle = styled.p`
 
 interface Props {
   nft: any;
+  handleNFTClick: (nft: any) => void;
 }
 
-const NFTCard: React.FC<Props> = ({ nft }) => {
+const NFTCard: React.FC<Props> = ({ nft, handleNFTClick }) => {
+  const openDetails = () => {
+    handleNFTClick(nft);
+  };
   return (
     <Card>
-      <NFTImg imageUrl={nft.image_preview_url} />
+      <NFTImg imageUrl={nft.image_preview_url} onClick={openDetails} />
       <NFTCardBody>
-        <NFTTitle>{nft.name}</NFTTitle>
+        <NFTTitle onClick={openDetails}>{nft.name}</NFTTitle>
         <NFTSubtitle>{nft.asset_contract.name}</NFTSubtitle>
       </NFTCardBody>
     </Card>

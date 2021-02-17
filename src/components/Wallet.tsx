@@ -4,13 +4,15 @@ import { ethers } from "ethers";
 import { isEmpty } from "lodash";
 // import { useSpring, animated } from "react-spring";
 import styled from "styled-components";
-import Navbar from "./Navbar";
+// import Navbar from "./Navbar";
 import CategoriesMenu from "./CategoriesMenu";
 import WalletHeader from "./WalletHeader";
 import Collections from "./Collections";
 import TokenList from "./TokenList";
 import Trail from "./Trail";
 import Spinner from "./Spinner/Spinner";
+import Footer from "./Footer";
+import NFTDetailsModal from "./NFTDetailsModal";
 import { apiGetAccountUniqueTokens } from "../apis/opensea-api";
 import { apiGetERC20Tokens } from "../apis/ethplorer-api";
 import { Categories } from "../helpers/constants";
@@ -26,11 +28,12 @@ interface Params {
   walletParam: string;
 }
 
-const WalletWrapper = styled.div`
+const WalletWrapper = styled.div<{ modalIsOpen: boolean }>`
   padding: 40px 30px;
   max-width: 850px;
   margin: auto;
   text-align: center;
+  overflow: ${(p) => (p.modalIsOpen ? "hidden" : null)};
 `;
 
 const Wallet: React.FC<Props> = () => {
@@ -47,6 +50,7 @@ const Wallet: React.FC<Props> = () => {
   const [loadingNFTs, setLoadingNFTs] = useState<boolean>(true);
   const [loadingTokens, setLoadingTokens] = useState<boolean>(true);
   const [loadingWalletHeader, setLoadingWalletHeader] = useState(true);
+  const [selectedNFTDetail, setSelectedNFTDetail] = useState<any>();
 
   useEffect(() => {
     const getWeb3 = async () => {
@@ -104,14 +108,21 @@ const Wallet: React.FC<Props> = () => {
     setSelectedContract(undefined);
   };
 
+  const handleNFTClick = (nftObj: any) => {
+    setSelectedNFTDetail(nftObj);
+  };
+
   return (
-    <WalletWrapper>
-      <Navbar />
-      <div>
+    <WalletWrapper modalIsOpen={!!selectedNFTDetail}>
+      {/* <Navbar /> */}
+      <>
         {loadingWalletHeader ? (
-          <Trail>
-            <Spinner />
-          </Trail>
+          <div>
+            <br />
+            <Trail>
+              <Spinner />
+            </Trail>
+          </div>
         ) : (
           <>
             <WalletHeader
@@ -135,6 +146,15 @@ const Wallet: React.FC<Props> = () => {
                     NFTs={NFTs}
                     selectedContract={selectedContract}
                     handleContractClick={handleContractClick}
+                    handleNFTClick={handleNFTClick}
+                  />
+                )}
+                {selectedNFTDetail && (
+                  <NFTDetailsModal
+                    nft={selectedNFTDetail}
+                    closeModal={() => {
+                      setSelectedNFTDetail(null);
+                    }}
                   />
                 )}
               </>
@@ -152,7 +172,8 @@ const Wallet: React.FC<Props> = () => {
             )}
           </>
         )}
-      </div>
+        <Footer />
+      </>
     </WalletWrapper>
   );
 };
