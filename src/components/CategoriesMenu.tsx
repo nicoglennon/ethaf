@@ -26,10 +26,13 @@ const CategoryWrapper = styled.div<{ isSelected?: boolean }>`
   color: ${(p) => (p.isSelected ? "#fff" : "#777")};
   background-color: ${(p) => (p.isSelected ? "#333" : null)};
   cursor: pointer;
+  box-shadow: ${(p) =>
+    p.isSelected ? "rgba(0, 0, 0, 0.1) 0px 5px 10px" : null}
+
   &:hover {
     background-color: ${(p) => (p.isSelected ? null : "#e0e0e0")};
   }
-  transition: color 200ms ease, background-color 200ms ease;
+  transition: all 400ms ease;
 `;
 
 const CategoryTitle = styled.p`

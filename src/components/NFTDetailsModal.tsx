@@ -8,7 +8,7 @@ import Trail from "./Trail";
 const NFTImg = styled.img`
   width: 100%;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 20px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 10px;
 `;
 
 const NFTDetailsContent = styled.div`
@@ -140,15 +140,17 @@ const NFTDetailsModal: React.FC<Props> = ({ nft, closeModal }) => {
               </NFTTraitsWrapper>
             )}
           </NFTDetailsInfo>
-          <Separator />
           {contract.description && (
-            <NFTContractDetailsInfo>
-              <NFTContractDetailsTitle>
-                About {contract.name}
-              </NFTContractDetailsTitle>
-              <NFTDescription>{contract.description}</NFTDescription>
-              <a href={contract.externalLink}>Link</a>
-            </NFTContractDetailsInfo>
+            <>
+              <Separator />
+              <NFTContractDetailsInfo>
+                <NFTContractDetailsTitle>
+                  About {contract.name}
+                </NFTContractDetailsTitle>
+                <NFTDescription>{contract.description}</NFTDescription>
+                <a href={contract.externalLink}>Link</a>
+              </NFTContractDetailsInfo>
+            </>
           )}
         </NFTDetailsContent>
       </Trail>

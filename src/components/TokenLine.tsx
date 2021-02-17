@@ -32,7 +32,7 @@ const TokenLogo = styled.img`
   height: 40px;
   border-radius: 50%;
   overflow: hidden;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 15px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 10px;
 `;
 
 const TokenSymbolAndName = styled.div`

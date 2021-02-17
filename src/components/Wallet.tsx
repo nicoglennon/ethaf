@@ -2,16 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ethers } from "ethers";
 import { isEmpty } from "lodash";
-// import { useSpring, animated } from "react-spring";
 import styled from "styled-components";
-// import Navbar from "./Navbar";
 import CategoriesMenu from "./CategoriesMenu";
 import WalletHeader from "./WalletHeader";
 import Collections from "./Collections";
 import TokenList from "./TokenList";
 import Trail from "./Trail";
 import Spinner from "./Spinner/Spinner";
-import Footer from "./Footer";
+// import Footer from "./Footer";
 import NFTDetailsModal from "./NFTDetailsModal";
 import { apiGetAccountUniqueTokens } from "../apis/opensea-api";
 import { apiGetERC20Tokens } from "../apis/ethplorer-api";
@@ -33,6 +31,7 @@ const WalletWrapper = styled.div<{ modalIsOpen: boolean }>`
   max-width: 850px;
   margin: auto;
   text-align: center;
+  min-height: 100vh;
   overflow: ${(p) => (p.modalIsOpen ? "hidden" : null)};
 `;
 
@@ -172,7 +171,7 @@ const Wallet: React.FC<Props> = () => {
             )}
           </>
         )}
-        <Footer />
+        {/* <Footer /> */}
       </>
     </WalletWrapper>
   );

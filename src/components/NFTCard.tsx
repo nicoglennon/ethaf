@@ -15,7 +15,7 @@ const Card = styled.div`
     opacity: 0.7;
   }
   transition: opacity 200ms ease;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 20px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 10px;
 `;
 
 const NFTCardBody = styled.div`

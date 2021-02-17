@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import NFTCard from "./NFTCard";
 import ContractPill from "./ContractPill";
@@ -35,6 +35,17 @@ const Collections: React.FC<Props> = ({
   handleContractClick,
   handleNFTClick,
 }) => {
+  const contractTitleRef = useRef<HTMLHeadingElement>(null);
+  const scrollToTitle = () => {
+    contractTitleRef?.current?.scrollIntoView();
+  };
+
+  const clickContract = (nftKey: string) => {
+    handleContractClick(nftKey);
+    scrollToTitle();
+  };
+  // run this function from an event handler or an effect to execute scroll
+
   return (
     <>
       <ContractPillWrapper>
@@ -45,14 +56,14 @@ const Collections: React.FC<Props> = ({
               contractKey={nftKey}
               contractObj={NFTs[nftKey][0].asset_contract}
               isSelected={selectedContract === nftKey}
-              handleContractClick={handleContractClick}
+              handleContractClick={clickContract}
             />
           ))}
         </Trail>
       </ContractPillWrapper>
       {selectedContract && (
         <>
-          <h3>{selectedContract}</h3>
+          <h3 ref={contractTitleRef}>{selectedContract}</h3>
           <Trail key={selectedContract}>
             <NFTsWrapper>
               {NFTs[selectedContract].map((nft: any) => (

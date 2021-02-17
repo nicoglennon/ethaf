@@ -5,6 +5,10 @@ interface Props {
   children?: ReactElement | Array<ReactElement>;
 }
 
+const styles = {
+  //   zIndex: "auto",
+};
+
 const Trail: React.FC<Props> = ({ children, ...props }) => {
   const items = React.Children.toArray(children);
   const trail = useTrail(items.length, {
@@ -19,6 +23,7 @@ const Trail: React.FC<Props> = ({ children, ...props }) => {
           key={items[index].key}
           style={{
             ...rest,
+            ...styles,
             transform: interpolate([y], (y: number) => `translate(0,${y}px)`),
           }}
         >

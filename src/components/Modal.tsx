@@ -5,6 +5,10 @@ const Background = styled.div`
   position: fixed;
   background-color: rgba(0, 0, 0, 0.6);
   inset: 0px;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
   overflow: auto;
   z-index: 2;
   box-sizing: border-box;

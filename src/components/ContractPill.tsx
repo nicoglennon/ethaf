@@ -33,7 +33,7 @@ const Pill = styled.div<{ isSelected: boolean }>`
     background-color: #e0e0e0;
   }
   transition: background-color 150ms ease, border 150ms ease;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 20px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 10px;
 `;
 const ContractTitle = styled.p`
   margin: 5px 5px 5px 0px;

@@ -12,7 +12,7 @@ const TokenLineWrapper = styled.div`
   gap: 10px;
   padding: 10px;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 20px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 10px;
   max-width: 600px;
   margin: auto;
 `;
