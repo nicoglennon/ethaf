@@ -5,7 +5,6 @@ const Card = styled.div`
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  font-size: 0.9em;
   flex-wrap: wrap;
   cursor: pointer;
   overflow: hidden;
@@ -50,7 +49,7 @@ const NFTSubtitle = styled.p`
   margin: 0;
   margin-top: 5px;
   color: #a5afbe;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 `;
 
 interface Props {

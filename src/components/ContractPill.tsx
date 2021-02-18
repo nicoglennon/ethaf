@@ -18,8 +18,8 @@ const ContractImg = styled.img`
 const Pill = styled.div<{ isSelected: boolean }>`
   border: ${(p) => (p.isSelected ? "3px solid #333" : "3px solid transparent")};
   display: flex;
-  font-size: 0.9em;
-  font-weight: 500;
+  // font-size: 0.9em;
+  // font-weight: 500;
   cursor: pointer;
   width: max-content;
   padding: 5px;

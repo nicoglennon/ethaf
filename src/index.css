@@ -4,10 +4,10 @@ html {
 
 body {
   margin: 0;
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
+  font-family: "Apfel Grotezk", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  /* -webkit-font-smoothing: antialiased; */
   -moz-osx-font-smoothing: grayscale;
   color: #333;
   background-color: #f8f8f8;
@@ -20,4 +20,11 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+@font-face {
+  font-family: "Apfel Grotezk";
+  src: local("Apfel Grotezk"),
+    url(./fonts/ApfelGrotezk/web/ApfelGrotezk-Regular.woff) format("woff"),
+    url(./fonts/ApfelGrotezk/web/ApfelGrotezk-Regular.woff2) format("woff2");
 }

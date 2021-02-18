@@ -18,18 +18,18 @@ const CategoriesWrapper = styled.div`
 const CategoryWrapper = styled.div<{ isSelected?: boolean }>`
   border-radius: 12px;
   align-items: center;
-  padding: 8px 12px;
+  padding: 12px 16px;
   width: max-content;
   display: flex;
   justify-content: center;
   gap: 5px;
-  color: ${(p) => (p.isSelected ? "#fff" : "#777")};
+  color: ${(p) => (p.isSelected ? "#fff" : "#333")};
   background-color: ${(p) => (p.isSelected ? "#333" : null)};
   cursor: pointer;
   box-shadow: ${(p) =>
     p.isSelected ? "rgba(0, 0, 0, 0.1) 0px 5px 10px" : null};
   &:hover {
-    background-color: ${(p) => (p.isSelected ? null : "#e0e0e0")};
+    background-color: ${(p) => (p.isSelected ? null : "#e6e6e6")};
   }
   transition: all 200ms ease;
 `;
@@ -37,6 +37,7 @@ const CategoryWrapper = styled.div<{ isSelected?: boolean }>`
 const CategoryTitle = styled.p`
   margin: 0;
   font-weight: 500;
+  font-size: 1.2rem;
 `;
 
 interface Props {

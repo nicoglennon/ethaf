@@ -29,23 +29,18 @@ const WalletKey = styled.p`
   margin: 0;
   border-radius: 8px;
   background-color: #eee;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
   font-weight: 700;
-  color: #777;
+  color: #666;
 `;
 const WalletValue = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
   margin: 0;
-  font-size: 16px;
+  font-size: 1.1rem;
   font-weight: 500;
-`;
-
-const WalletAddress = styled.span`
-  font-family: "Source Code Pro", monospace;
-  font-weight: 600;
 `;
 
 const IconWrapper = styled.div`
@@ -78,7 +73,7 @@ const WalletHeader: React.FC<Props> = ({
           <WalletLine>
             <WalletKey>Address</WalletKey>
             <WalletValue>
-              <WalletAddress>{formatAddressShort(walletId)}</WalletAddress>
+              <span>{formatAddressShort(walletId)}</span>
               <IconWrapper>
                 <Copy
                   size={16}

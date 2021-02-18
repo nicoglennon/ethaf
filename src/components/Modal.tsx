@@ -21,7 +21,7 @@ const Scroller = styled.div`
   z-index: 3;
   outline: none;
   max-width: 90%;
-  width: 26rem;
+  width: 30rem;
   margin: 20px auto;
   vertical-align: middle;
   display: inline-block;

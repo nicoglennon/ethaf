@@ -48,13 +48,13 @@ const NFTContractDetailsInfo = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 15px;
 `;
 
 const NFTDescription = styled.div`
   max-width: 100%;
   flex-wrap: wrap;
-  color: #777;
+  color: #888;
 `;
 
 const CloseButton = styled.div`
@@ -91,7 +91,7 @@ const ContractImg = styled.img`
 `;
 
 const NFTContractDetailsTitle = styled.div`
-  font-weight: 500;
+  font-weight: 600;
   font-size: 1.1rem;
 `;
 
