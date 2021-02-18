@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-scroll";
 
 const ContractImgWrapper = styled.div`
   border-radius: 50%;
@@ -52,17 +53,25 @@ const ContractPill: React.FC<Props> = ({
   handleContractClick,
 }) => {
   return (
-    <Pill
-      onClick={() => {
-        handleContractClick(contractKey);
-      }}
-      isSelected={isSelected}
+    <Link
+      to="contractTitleScroll"
+      // spy={true}
+      smooth={true}
+      offset={-70}
+      duration={500}
     >
-      <ContractImgWrapper>
-        <ContractImg src={contractObj.image_url} alt={contractObj.name} />
-      </ContractImgWrapper>
-      <ContractTitle>{contractObj.name}</ContractTitle>
-    </Pill>
+      <Pill
+        onClick={() => {
+          handleContractClick(contractKey);
+        }}
+        isSelected={isSelected}
+      >
+        <ContractImgWrapper>
+          <ContractImg src={contractObj.image_url} alt={contractObj.name} />
+        </ContractImgWrapper>
+        <ContractTitle>{contractObj.name}</ContractTitle>
+      </Pill>
+    </Link>
   );
 };
 

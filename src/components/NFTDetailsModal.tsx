@@ -4,6 +4,7 @@ import { X } from "react-feather";
 import Modal from "./Modal";
 import TraitPill from "./TraitPill";
 import Trail from "./Trail";
+import { ExternalLink } from "react-feather";
 
 const NFTImg = styled.img`
   width: 100%;
@@ -33,6 +34,7 @@ const NFTSubtitle = styled.p`
   margin: 0;
   color: #a5afbe;
   font-size: 1rem;
+  word-break: break-word;
 `;
 
 const NFTDetailsInfo = styled.div`
@@ -90,6 +92,7 @@ const ContractImg = styled.img`
 
 const NFTContractDetailsTitle = styled.div`
   font-weight: 500;
+  font-size: 1.1rem;
 `;
 
 const NFTTraitsWrapper = styled.div`
@@ -103,13 +106,31 @@ const Separator = styled.hr`
   border: 1px solid #eee;
   width: 100%;
 `;
+const LinksSection = styled.div`
+  display: flex;
+  gap: 15px;
+`;
+
+const CollectionExternalLink = styled.a`
+  font-weight: 500;
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    opacity: 0.7;
+  }
+`;
 
 interface Props {
   nft: any;
   closeModal: () => void;
 }
 const NFTDetailsModal: React.FC<Props> = ({ nft, closeModal }) => {
-  const { asset_contract: contract, traits } = nft;
+  const { asset_contract: contract, traits, id: nftId } = nft;
+  const shortenedId = nftId.length > 12 ? nftId.substr(0, 12) + "…" : nftId;
   console.log(nft);
   return (
     <Modal closeModal={closeModal}>
@@ -126,7 +147,9 @@ const NFTDetailsModal: React.FC<Props> = ({ nft, closeModal }) => {
           <NFTImg src={nft.image_url} />
           <NFTDetailsInfo>
             <div>
-              <NFTSubtitle>{contract.name}</NFTSubtitle>
+              <NFTSubtitle>
+                {contract.name} #{shortenedId}
+              </NFTSubtitle>
               <NFTTitle>{nft.name}</NFTTitle>
             </div>
             {nft.description && (
@@ -148,7 +171,12 @@ const NFTDetailsModal: React.FC<Props> = ({ nft, closeModal }) => {
                   About {contract.name}
                 </NFTContractDetailsTitle>
                 <NFTDescription>{contract.description}</NFTDescription>
-                <a href={contract.externalLink}>Link</a>
+                <LinksSection>
+                  <CollectionExternalLink href={contract.external_link}>
+                    <span>Website</span>
+                    <ExternalLink size={18} />
+                  </CollectionExternalLink>
+                </LinksSection>
               </NFTContractDetailsInfo>
             </>
           )}
