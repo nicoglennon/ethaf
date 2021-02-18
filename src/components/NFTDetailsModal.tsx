@@ -24,7 +24,7 @@ const NFTTitle = styled.p`
   max-width: 100%;
   font-weight: 500;
   margin: 0;
-  font-size: 1.5em;
+  font-size: 1.8em;
   color: #000;
 `;
 
@@ -33,7 +33,7 @@ const NFTSubtitle = styled.p`
   font-weight: 500;
   margin: 0;
   color: #a5afbe;
-  font-size: 1rem;
+  font-size: 1.2rem;
   word-break: break-word;
 `;
 
@@ -91,8 +91,9 @@ const ContractImg = styled.img`
 `;
 
 const NFTContractDetailsTitle = styled.div`
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1.1rem;
+  color: #000;
 `;
 
 const NFTTraitsWrapper = styled.div`

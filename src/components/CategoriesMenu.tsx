@@ -18,7 +18,7 @@ const CategoriesWrapper = styled.div`
 const CategoryWrapper = styled.div<{ isSelected?: boolean }>`
   border-radius: 12px;
   align-items: center;
-  padding: 12px 16px;
+  padding: 12px 20px;
   width: max-content;
   display: flex;
   justify-content: center;

@@ -22,6 +22,10 @@ const NFTsWrapper = styled.div`
   justify-content: center;
 `;
 
+const ContractTitle = styled.h2`
+  font-size: 2rem;
+`;
+
 interface Props {
   NFTs?: any;
   selectedContract: string | undefined;
@@ -50,7 +54,7 @@ const Collections: React.FC<Props> = ({
           ))}
         </Trail>
       </ContractPillWrapper>
-      <h3 id="contractTitleScroll">{selectedContract}</h3>
+      <ContractTitle id="contractTitleScroll">{selectedContract}</ContractTitle>
       {selectedContract && (
         <>
           <Trail key={selectedContract}>

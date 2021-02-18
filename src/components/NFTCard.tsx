@@ -32,7 +32,7 @@ const NFTImg = styled.div<{ imageUrl: string }>`
   height: 250px;
   width: 250px;
   // border-radius: 5px;
-  background-color: #f0f0f0;
+  background-color: #f5e8ff;
 `;
 
 const NFTTitle = styled.p`

@@ -19,6 +19,7 @@ const TokenSection = styled.div`
   }
   transition: background-color 200ms ease;
   cursor: pointer;
+  text-align: left;
 `;
 
 const TokenNameAndLogo = styled.div`
