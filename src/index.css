@@ -17,6 +17,14 @@ body {
   box-sizing: border-box;
 }
 
+input:focus {
+  outline: none;
+}
+
+::placeholder {
+  color: #bbb;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

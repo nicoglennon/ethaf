@@ -10,6 +10,7 @@ const NFTImg = styled.img`
   width: 100%;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 10px;
+  background-color: #f0f0f0;
 `;
 
 const NFTDetailsContent = styled.div`
@@ -173,7 +174,11 @@ const NFTDetailsModal: React.FC<Props> = ({ nft, closeModal }) => {
                 </NFTContractDetailsTitle>
                 <NFTDescription>{contract.description}</NFTDescription>
                 <LinksSection>
-                  <CollectionExternalLink href={contract.external_link}>
+                  <CollectionExternalLink
+                    href={contract.external_link}
+                    target="_blank"
+                    referrerPolicy="no-referrer"
+                  >
                     <span>Website</span>
                     <ExternalLink size={18} />
                   </CollectionExternalLink>

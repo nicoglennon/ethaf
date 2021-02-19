@@ -22,7 +22,8 @@ const NFTsWrapper = styled.div`
   justify-content: center;
 `;
 
-const ContractTitle = styled.h2`
+const ContractTitle = styled.div`
+  margin: 30px auto;
   font-size: 2rem;
 `;
 

@@ -50,10 +50,13 @@ const TokenName = styled.p`
 const TokenSymbol = styled.p`
   font-weight: 500;
   margin: 0;
+  font-size: 1.1rem;
 `;
 
 const TokenAmount = styled.p`
   font-weight: 500;
+  font-size: 1.1rem;
+
   margin: 0;
 `;
 
@@ -69,19 +72,28 @@ const TokenAmountAndValue = styled.div`
 `;
 
 const TokenLine: React.FC<Props> = ({ token }) => {
-  const tokenSymbol = token.tokenInfo.symbol;
-  const tokenName = token.tokenInfo.name;
-  const tokenAmount = roundToDecimal(
-    token.balance / Math.pow(10, token.tokenInfo.decimals),
-    3
-  );
-  const tokenPrice = token.tokenInfo.price.rate;
+  const {
+    tokenInfo: {
+      symbol: tokenSymbol,
+      name: tokenName,
+      decimals,
+      price,
+      address,
+    },
+    balance,
+  } = token;
+  const tokenAmount = roundToDecimal(balance / Math.pow(10, decimals), 3);
+  console.log(token);
+  const tokenPrice = price.rate;
   const tokenTotalValue = dollarFormatter.format(tokenAmount * tokenPrice);
+  const openTokenLink = () => {
+    window.open(`https://info.uniswap.org/token/${address}`, "_blank"); //to open ne
+  };
   return (
-    <TokenSection>
+    <TokenSection onClick={openTokenLink}>
       <TokenNameAndLogo>
         <TokenLogo
-          src={`https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${token.tokenInfo.address}/logo.png`}
+          src={`https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${address}/logo.png`}
         />
         <TokenSymbolAndName>
           <TokenSymbol>{tokenSymbol}</TokenSymbol>
