@@ -21,6 +21,13 @@ input:focus {
   outline: none;
 }
 
+a:visited {
+  color: inherit;
+}
+a {
+  text-decoration: none;
+}
+
 ::placeholder {
   color: #bbb;
 }

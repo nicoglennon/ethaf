@@ -4,7 +4,7 @@ const PillWrapper = styled.div`
   padding: 10px;
   display: flex;
   flex-direction: column;
-  background-color: #f3f3f3;
+  background-color: #eee;
   border-radius: 12px;
   width: max-content;
   color: #333;

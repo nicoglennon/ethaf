@@ -33,7 +33,7 @@ const NFTSubtitle = styled.p`
   max-width: 100%;
   font-weight: 500;
   margin: 0;
-  color: #a5afbe;
+  color: #3c4252cc;
   font-size: 1.2rem;
   word-break: break-word;
 `;
@@ -55,7 +55,8 @@ const NFTContractDetailsInfo = styled.div`
 const NFTDescription = styled.div`
   max-width: 100%;
   flex-wrap: wrap;
-  color: #888;
+  color: #3c4252cc;
+  font-size: 1.1rem;
 `;
 
 const CloseButton = styled.div`
@@ -93,7 +94,7 @@ const ContractImg = styled.img`
 
 const NFTContractDetailsTitle = styled.div`
   font-weight: 500;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: #000;
 `;
 
@@ -115,7 +116,7 @@ const LinksSection = styled.div`
 
 const CollectionExternalLink = styled.a`
   font-weight: 500;
-  color: inherit;
+  color: #000;
   text-decoration: none;
   display: flex;
   gap: 3px;

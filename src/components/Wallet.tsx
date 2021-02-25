@@ -10,7 +10,6 @@ import TokenList from "./TokenList";
 import Trail from "./Trail";
 import FadeIn from "./FadeIn";
 import Spinner from "./Spinner/Spinner";
-// import Footer from "./Footer";
 import NFTDetailsModal from "./NFTDetailsModal";
 import { apiGetAccountUniqueTokens } from "../apis/opensea-api";
 import { apiGetERC20Tokens } from "../apis/ethplorer-api";
@@ -27,14 +26,7 @@ interface Params {
   walletParam: string;
 }
 
-const WalletWrapper = styled.div<{ modalIsOpen: boolean }>`
-  padding: 40px 30px;
-  max-width: 850px;
-  margin: auto;
-  text-align: center;
-  min-height: 100vh;
-  overflow: ${(p) => (p.modalIsOpen ? "hidden" : null)};
-`;
+const WalletWrapper = styled.div``;
 
 const Wallet: React.FC<Props> = () => {
   const { walletParam } = useParams<Params>();
@@ -113,8 +105,7 @@ const Wallet: React.FC<Props> = () => {
   };
 
   return (
-    <WalletWrapper modalIsOpen={!!selectedNFTDetail}>
-      {/* <Navbar /> */}
+    <WalletWrapper>
       <>
         {loadingWalletHeader ? (
           <div>
@@ -174,7 +165,6 @@ const Wallet: React.FC<Props> = () => {
             )}
           </>
         )}
-        {/* <Footer /> */}
       </>
     </WalletWrapper>
   );

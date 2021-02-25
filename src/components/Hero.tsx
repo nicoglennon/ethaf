@@ -1,20 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import Trail from "./Trail";
 
 // const HeroTitle = styled.h1`
 //   font-size: 2rem;
 //   font-weight: 500;
 // `;
 
-const HeroWrapper = styled.div<{ modalIsOpen?: boolean }>`
-  padding: 40px 30px;
-  max-width: 850px;
-  margin: auto;
-  text-align: center;
-  min-height: 100vh;
-  overflow: ${(p) => (p.modalIsOpen ? "hidden" : null)};
-`;
+const HeroWrapper = styled.div``;
 
 const InnerWrapper = styled.div`
   max-width: 400px;
@@ -72,7 +66,7 @@ const AddyForm = styled.form`
 
 const Footer = styled.div`
   margin: 20px auto;
-  color: #777;
+  color: #bbb;
   font-size: 1.25rem;
 `;
 
@@ -101,20 +95,21 @@ const Hero: React.FC = () => {
   return (
     <HeroWrapper>
       <InnerWrapper>
-        {/* <HeroTitle>eth.af</HeroTitle> */}
-        <AddyForm onSubmit={handleSubmit}>
-          <AddyInput
-            type="text"
-            value={addyInput}
-            onChange={(e) => {
-              setAddyInput(e.target.value);
-            }}
-            placeholder="addy / ENS"
-            name="addy"
-          />
-          <AddySubmit type="submit" value="Let's Go" disabled={!addyInput} />
-        </AddyForm>
-        <Footer>eth.af ©2021</Footer>
+        <Trail>
+          <AddyForm onSubmit={handleSubmit}>
+            <AddyInput
+              type="text"
+              value={addyInput}
+              onChange={(e) => {
+                setAddyInput(e.target.value);
+              }}
+              placeholder="addy / ENS"
+              name="addy"
+            />
+            <AddySubmit type="submit" value="Let's Go" disabled={!addyInput} />
+          </AddyForm>
+          <Footer>eth.af ©2021</Footer>
+        </Trail>
       </InnerWrapper>
     </HeroWrapper>
   );
