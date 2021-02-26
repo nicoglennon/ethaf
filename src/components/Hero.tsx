@@ -33,7 +33,7 @@ const AddyInput = styled.input`
 
   transition: all 200ms ease;
 `;
-const AddySubmit = styled.input`
+const AddySubmit = styled.button`
   padding: 15px;
   font-family: inherit;
   font-size: 1.5rem;
@@ -57,7 +57,7 @@ const AddySubmit = styled.input`
   transition: all 200ms ease;
 `;
 
-const AddyForm = styled.form`
+const AddyForm = styled.div`
   font-family: inherit;
   display: flex;
   flex-direction: column;
@@ -84,7 +84,9 @@ const Hero: React.FC = () => {
   let history = useHistory();
   const [addyInput, setAddyInput] = useState<string>("");
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     event.preventDefault();
     console.log(addyInput);
     const cleanedAddress = cleanAddress(addyInput);
@@ -96,7 +98,7 @@ const Hero: React.FC = () => {
     <HeroWrapper>
       <InnerWrapper>
         <Trail>
-          <AddyForm onSubmit={handleSubmit}>
+          <AddyForm>
             <AddyInput
               type="text"
               value={addyInput}
@@ -106,7 +108,13 @@ const Hero: React.FC = () => {
               placeholder="addy / ENS"
               name="addy"
             />
-            <AddySubmit type="submit" value="Let's Go" disabled={!addyInput} />
+            <AddySubmit
+              type="submit"
+              disabled={!addyInput}
+              onClick={handleSubmit}
+            >
+              Let's Go
+            </AddySubmit>
           </AddyForm>
           <Footer>Amulet ©2021</Footer>
         </Trail>
