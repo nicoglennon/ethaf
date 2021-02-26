@@ -108,7 +108,7 @@ const Hero: React.FC = () => {
             />
             <AddySubmit type="submit" value="Let's Go" disabled={!addyInput} />
           </AddyForm>
-          <Footer>eth.af ©2021</Footer>
+          <Footer>Amulet ©2021</Footer>
         </Trail>
       </InnerWrapper>
     </HeroWrapper>
