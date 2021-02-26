@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { ethers } from "ethers";
 import { isEmpty } from "lodash";
 import styled from "styled-components";
@@ -101,6 +101,16 @@ const Wallet: React.FC<Props> = () => {
     setSelectedNFTDetail(nftObj);
   };
 
+  if (!loadingWalletHeader && !walletId) {
+    return (
+      <Trail>
+        <p>Nothing at this address.</p>
+        <Link to="/">
+          <p style={{ fontWeight: 700 }}>Try again?</p>
+        </Link>
+      </Trail>
+    );
+  }
   return (
     <WalletWrapper>
       <>

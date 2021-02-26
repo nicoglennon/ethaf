@@ -82,7 +82,7 @@ const cleanAddress = (addy: string | undefined) => {
 
 const Hero: React.FC = () => {
   let history = useHistory();
-  const [addyInput, setAddyInput] = useState<string>();
+  const [addyInput, setAddyInput] = useState<string>("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
