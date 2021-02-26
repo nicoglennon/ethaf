@@ -22,11 +22,6 @@ const NFTsWrapper = styled.div`
   justify-content: center;
 `;
 
-const ContractTitle = styled.div`
-  margin: 30px auto;
-  font-size: 2rem;
-`;
-
 interface Props {
   NFTs?: any;
   selectedContract: string | undefined;
@@ -55,7 +50,10 @@ const Collections: React.FC<Props> = ({
           ))}
         </Trail>
       </ContractPillWrapper>
-      <ContractTitle id="contractTitleScroll">{selectedContract}</ContractTitle>
+      <div
+        id="contractTitleScroll"
+        style={{ margin: 10, height: 10, width: "100%" }}
+      />
       {selectedContract && (
         <>
           <Trail key={selectedContract}>

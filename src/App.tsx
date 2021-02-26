@@ -17,20 +17,23 @@ export default function App() {
     <Router>
       <AppWrapper>
         <Trail>
-          <Link to="/">
-            <div
-              style={{
-                margin: "auto",
-                textAlign: "center",
-                maxWidth: 200,
-                marginBottom: 10,
-                padding: "15px",
-              }}
-            >
-              {/* <Uni /> */}
-              <div style={{ fontSize: "2rem" }}>eth.af</div>
-            </div>
-          </Link>
+          <div
+            style={{
+              margin: "auto",
+              textAlign: "center",
+              width: "max-content",
+              padding: "15px",
+            }}
+          >
+            <Link to="/">
+              {/* <div style={{ fontSize: "2rem" }}>eth.af</div> */}
+              <img
+                style={{ width: 75 }}
+                alt="aas"
+                src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/271/nazar-amulet_1f9ff.png"
+              />
+            </Link>
+          </div>
         </Trail>
 
         <Switch>

@@ -32,7 +32,8 @@ const Wallet: React.FC<Props> = () => {
   const { walletParam } = useParams<Params>();
   const [walletId, setWalletId] = useState<string>("");
   const [ensAddress, setEnsAddress] = useState<string>();
-  const [ethBalance, setEthBalance] = useState<string>("");
+  const [ethBalance, setEthBalance] = useState<string>("-");
+  const [ethPrice, setEthPrice] = useState(0);
   const [NFTs, setNFTs] = useState<object>();
   const [tokens, setTokens] = useState<Array<object>>();
   const [selectedCategory, setSelectedCategory] = useState<string>(
@@ -51,7 +52,6 @@ const Wallet: React.FC<Props> = () => {
         1,
         process.env.REACT_APP_INFURA_ID
       );
-      console.log(walletParam);
       if (walletParam.length === 42) {
         setWalletId(walletParam);
         addressParam = walletParam;
@@ -63,10 +63,6 @@ const Wallet: React.FC<Props> = () => {
         setWalletId(walletAddress);
         setEnsAddress(addressParam);
       }
-      const bigNumberBalance = await provider.getBalance(addressParam);
-      const balance = await ethers.utils.formatEther(bigNumberBalance);
-      const balanceNumber = Number(balance).toFixed(5).toString();
-      setEthBalance(balanceNumber);
       setLoadingWalletHeader(false);
     };
     getWeb3();
@@ -80,10 +76,11 @@ const Wallet: React.FC<Props> = () => {
     };
 
     const getERC20s = async (wId: string) => {
-      const tokens = await apiGetERC20Tokens(wId);
+      const [eth, tokens] = await apiGetERC20Tokens(wId);
+      setEthPrice(eth.price.rate);
+      setEthBalance(Number(eth.balance).toFixed(5).toString());
       setTokens(tokens);
       setLoadingTokens(false);
-      console.log("ERC20", tokens);
     };
     if (walletId) {
       getNFTs(walletId);
@@ -107,7 +104,7 @@ const Wallet: React.FC<Props> = () => {
   return (
     <WalletWrapper>
       <>
-        {loadingWalletHeader ? (
+        {loadingWalletHeader || loadingTokens ? (
           <div>
             <br />
             <Trail>
@@ -159,7 +156,11 @@ const Wallet: React.FC<Props> = () => {
                     <Spinner />
                   </Trail>
                 ) : (
-                  <TokenList tokens={tokens} />
+                  <TokenList
+                    tokens={tokens}
+                    ethBalance={ethBalance}
+                    ethPrice={ethPrice}
+                  />
                 )}
               </>
             )}

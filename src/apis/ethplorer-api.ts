@@ -19,6 +19,8 @@ const api = axios.create({
 export const apiGetERC20Tokens = async (address: string) => {
   const url = `https://api.ethplorer.io/getAddressInfo/${address}?apiKey=${process.env.REACT_APP_ETHPLORER_KEY}`;
   const data = await api.get(url);
+  console.log(data);
+  const eth = get(data, "data.ETH", null);
   const erc721s = get(data, "data.tokens", null);
   const filteredErc721s = erc721s.filter((token: any) => token.tokenInfo.price);
   const checksumErc721s = filteredErc721s.map((token: any) => ({
@@ -28,5 +30,5 @@ export const apiGetERC20Tokens = async (address: string) => {
       address: ethers.utils.getAddress(token.tokenInfo.address),
     },
   }));
-  return checksumErc721s;
+  return [eth, checksumErc721s];
 };

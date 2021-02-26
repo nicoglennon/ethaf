@@ -2,9 +2,7 @@ import React from "react";
 import TokenLine from "./TokenLine";
 import styled from "styled-components";
 import Trail from "./Trail";
-interface Props {
-  tokens: Array<any>;
-}
+import EthTokenLine from "./EthTokenLine";
 
 const TokenLineWrapper = styled.div`
   display: flex;
@@ -16,10 +14,18 @@ const TokenLineWrapper = styled.div`
   max-width: 600px;
   margin: auto;
 `;
-const TokenList: React.FC<Props> = ({ tokens }) => {
+
+interface Props {
+  tokens: Array<any>;
+  ethBalance: string;
+  ethPrice: number;
+}
+
+const TokenList: React.FC<Props> = ({ tokens, ethBalance, ethPrice }) => {
   return (
     <Trail>
       <TokenLineWrapper>
+        <EthTokenLine amount={ethBalance} price={ethPrice} />
         {tokens.map((token) => (
           <TokenLine token={token} key={token.tokenInfo.address} />
         ))}
