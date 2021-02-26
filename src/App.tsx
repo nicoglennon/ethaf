@@ -6,7 +6,7 @@ import Trail from "./components/Trail";
 import Wallet from "./components/Wallet";
 
 const AppWrapper = styled.div`
-  padding: 40px 30px;
+  padding: 40px 30px 60px 30px;
   max-width: 850px;
   margin: auto;
   text-align: center;

@@ -51,9 +51,9 @@ const Modal: React.FC<Props> = ({ children, closeModal }) => {
     };
   }, []);
   return (
-    <Background>
+    <Background onClick={closeModal}>
       <Scroller>
-        <Content>{children}</Content>
+        <Content onClick={(e) => e.stopPropagation()}>{children}</Content>
       </Scroller>
     </Background>
   );

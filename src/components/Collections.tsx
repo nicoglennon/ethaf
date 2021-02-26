@@ -22,6 +22,12 @@ const NFTsWrapper = styled.div`
   justify-content: center;
 `;
 
+const NoCollectionsMessage = styled.div`
+  opacity: 0.5;
+  font-size: 1.1rem;
+  margin-top: 10px;
+`;
+
 interface Props {
   NFTs?: any;
   selectedContract: string | undefined;
@@ -35,19 +41,25 @@ const Collections: React.FC<Props> = ({
   handleContractClick,
   handleNFTClick,
 }) => {
+  const nftKeys = Object.keys(NFTs);
+  nftKeys.sort();
   return (
     <>
       <ContractPillWrapper>
         <Trail>
-          {Object.keys(NFTs).map((nftKey: string) => (
-            <ContractPill
-              key={nftKey}
-              contractKey={nftKey}
-              contractObj={NFTs[nftKey][0].asset_contract}
-              isSelected={selectedContract === nftKey}
-              handleContractClick={handleContractClick}
-            />
-          ))}
+          {nftKeys.length > 0 ? (
+            nftKeys.map((nftKey: string) => (
+              <ContractPill
+                key={nftKey}
+                contractKey={nftKey}
+                contractObj={NFTs[nftKey][0].asset_contract}
+                isSelected={selectedContract === nftKey}
+                handleContractClick={handleContractClick}
+              />
+            ))
+          ) : (
+            <NoCollectionsMessage>No collections yet.</NoCollectionsMessage>
+          )}
         </Trail>
       </ContractPillWrapper>
       <div

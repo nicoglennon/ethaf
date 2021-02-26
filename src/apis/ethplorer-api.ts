@@ -1,5 +1,5 @@
 import axios from "axios";
-import { get } from "lodash";
+import { get, orderBy } from "lodash";
 import { ethers } from "ethers";
 // import { tokenToString } from "typescript";
 
@@ -21,14 +21,16 @@ export const apiGetERC20Tokens = async (address: string) => {
   const data = await api.get(url);
   console.log(data);
   const eth = get(data, "data.ETH", null);
-  const erc721s = get(data, "data.tokens", null);
-  const filteredErc721s = erc721s.filter((token: any) => token.tokenInfo.price);
-  const checksumErc721s = filteredErc721s.map((token: any) => ({
+  console.log(data);
+  const erc20s = get(data, "data.tokens", []);
+  const filteredErc20s = erc20s.filter((token: any) => token.tokenInfo.price);
+  const orderedErc20s = orderBy(filteredErc20s, ["tokenInfo.symbol"], ["asc"]);
+  const checksumErc20s = orderedErc20s.map((token: any) => ({
     ...token,
     tokenInfo: {
       ...token.tokenInfo,
       address: ethers.utils.getAddress(token.tokenInfo.address),
     },
   }));
-  return [eth, checksumErc721s];
+  return [eth, checksumErc20s];
 };

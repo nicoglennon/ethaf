@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ethers } from "ethers";
-import { isEmpty } from "lodash";
 import styled from "styled-components";
 import CategoriesMenu from "./CategoriesMenu";
 import WalletHeader from "./WalletHeader";
@@ -135,7 +134,7 @@ const Wallet: React.FC<Props> = () => {
             />
             {selectedCategory === Categories.COLLECTIONS && (
               <>
-                {loadingNFTs || !NFTs || isEmpty(NFTs) ? (
+                {loadingNFTs || !NFTs ? (
                   <Trail>
                     <Spinner />
                   </Trail>
