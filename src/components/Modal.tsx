@@ -31,7 +31,7 @@ const Scroller = styled.div`
 const Content = styled.div`
   background: white;
   width: 100%;
-  padding: 20px;
+  padding: 25px;
   border-radius: 20px;
   gap: 20px;
   display: flex;
