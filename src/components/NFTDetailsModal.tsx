@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import ReactImageFallback from "react-image-fallback";
 import { X } from "react-feather";
 import Modal from "./Modal";
 import TraitPill from "./TraitPill";
 import Trail from "./Trail";
 import { ExternalLink } from "react-feather";
+import FallbackImage from "../assets/monocle.png";
 
 const NFTImg = styled.img`
   width: 100%;
@@ -87,11 +89,6 @@ const ContractImgWrapper = styled.div`
   width: 40px;
 `;
 
-const ContractImg = styled.img`
-  height: 40px;
-  width: 40px;
-`;
-
 const NFTContractDetailsTitle = styled.div`
   font-weight: 500;
   font-size: 1.2rem;
@@ -140,7 +137,12 @@ const NFTDetailsModal: React.FC<Props> = ({ nft, closeModal }) => {
       <Trail>
         <ModalHeader>
           <ContractImgWrapper>
-            <ContractImg src={contract.image_url} alt={contract.name} />
+            <ReactImageFallback
+              src={contract.image_url}
+              fallbackImage={FallbackImage}
+              alt={contract.name}
+              style={{ width: 40, height: 40 }}
+            />
           </ContractImgWrapper>
           <CloseButton onClick={closeModal}>
             <X size={20} />

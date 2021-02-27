@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { dollarFormatter, roundToDecimal } from "../helpers/utils";
+import ReactImageFallback from "react-image-fallback";
+import FallbackImage from "../assets/monocle.png";
 interface Props {
   token: any;
 }
@@ -28,7 +30,7 @@ const TokenNameAndLogo = styled.div`
   gap: 8px;
 `;
 
-const TokenLogo = styled.img`
+const TokenLogoWrapper = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -92,9 +94,14 @@ const TokenLine: React.FC<Props> = ({ token }) => {
   return (
     <TokenSection onClick={openTokenLink}>
       <TokenNameAndLogo>
-        <TokenLogo
-          src={`https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${address}/logo.png`}
-        />
+        <TokenLogoWrapper>
+          <ReactImageFallback
+            src={`https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${address}/logo.png`}
+            fallbackImage={FallbackImage}
+            alt="Token Image"
+            style={{ width: 40, height: 40 }}
+          />
+        </TokenLogoWrapper>
         <TokenSymbolAndName>
           <TokenSymbol>{tokenSymbol}</TokenSymbol>
           <TokenName>{tokenName}</TokenName>

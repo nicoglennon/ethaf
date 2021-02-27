@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Hero from "./components/Hero";
 import Trail from "./components/Trail";
 import Wallet from "./components/Wallet";
+import Alien from "./assets/alien.png";
 
 const AppWrapper = styled.div`
   padding: 40px 30px 60px 30px;
@@ -26,12 +27,7 @@ export default function App() {
             }}
           >
             <Link to="/">
-              {/* <div style={{ fontSize: "2rem" }}>eth.af</div> */}
-              <img
-                style={{ width: 75 }}
-                alt="aas"
-                src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/271/alien_1f47d.png"
-              />
+              <img style={{ width: 75 }} alt="aas" src={Alien} />
             </Link>
           </div>
         </Trail>

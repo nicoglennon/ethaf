@@ -1,16 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-scroll";
+import ReactImageFallback from "react-image-fallback";
+import FallbackImage from "../assets/monocle.png";
 
 const ContractImgWrapper = styled.div`
   border-radius: 50%;
   width: max-content;
   overflow: hidden;
-  height: 30px;
-  width: 30px;
-`;
-
-const ContractImg = styled.img`
   height: 30px;
   width: 30px;
 `;
@@ -67,7 +64,12 @@ const ContractPill: React.FC<Props> = ({
         isSelected={isSelected}
       >
         <ContractImgWrapper>
-          <ContractImg src={contractObj.image_url} alt={contractObj.name} />
+          <ReactImageFallback
+            src={contractObj.image_url}
+            fallbackImage={FallbackImage}
+            alt="Contract Image"
+            style={{ width: 30, height: 30 }}
+          />
         </ContractImgWrapper>
         <ContractTitle>{contractObj.name}</ContractTitle>
       </Pill>
