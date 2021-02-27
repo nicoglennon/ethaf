@@ -30,7 +30,7 @@ export default function App() {
               <img
                 style={{ width: 75 }}
                 alt="aas"
-                src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/271/nazar-amulet_1f9ff.png"
+                src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/271/alien_1f47d.png"
               />
             </Link>
           </div>

@@ -113,10 +113,10 @@ const Hero: React.FC = () => {
               disabled={!addyInput}
               onClick={handleSubmit}
             >
-              Let's Go
+              Lurk
             </AddySubmit>
           </AddyForm>
-          <Footer>Amulet ©2021</Footer>
+          <Footer>eth.af ©2021</Footer>
         </Trail>
       </InnerWrapper>
     </HeroWrapper>
