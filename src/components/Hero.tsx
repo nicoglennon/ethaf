@@ -88,7 +88,6 @@ const Hero: React.FC = () => {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     event.preventDefault();
-    console.log(addyInput);
     const cleanedAddress = cleanAddress(addyInput);
     if (cleanedAddress) {
       history.push(`/${cleanedAddress}`);

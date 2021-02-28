@@ -85,7 +85,6 @@ const TokenLine: React.FC<Props> = ({ token }) => {
     balance,
   } = token;
   const tokenAmount = roundToDecimal(balance / Math.pow(10, decimals), 3);
-  console.log(token);
   const tokenPrice = price.rate;
   const tokenTotalValue = dollarFormatter.format(tokenAmount * tokenPrice);
   const openTokenLink = () => {
