@@ -131,7 +131,6 @@ interface Props {
 const NFTDetailsModal: React.FC<Props> = ({ nft, closeModal }) => {
   const { asset_contract: contract, traits, id: nftId } = nft;
   const shortenedId = nftId.length > 12 ? nftId.substr(0, 12) + "…" : nftId;
-  console.log(nft);
   return (
     <Modal closeModal={closeModal}>
       <Trail>
