@@ -116,6 +116,8 @@ const Wallet: React.FC<Props> = () => {
       <>
         <Helmet>
           <title>{ensAddress || "eth.af"}</title>
+          <meta name="twitter:title" content={ensAddress || "eth.af"} />
+          <meta property="og:title" content={ensAddress || "eth.af"} />
         </Helmet>
         {loadingWalletHeader || loadingTokens ? (
           <div>
