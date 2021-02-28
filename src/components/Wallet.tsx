@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { ethers } from "ethers";
 import styled from "styled-components";
 import CategoriesMenu from "./CategoriesMenu";
@@ -113,6 +114,9 @@ const Wallet: React.FC<Props> = () => {
   return (
     <WalletWrapper>
       <>
+        <Helmet>
+          <title>{ensAddress || "eth.af"}</title>
+        </Helmet>
         {loadingWalletHeader || loadingTokens ? (
           <div>
             <br />
