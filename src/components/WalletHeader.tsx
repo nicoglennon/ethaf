@@ -12,6 +12,17 @@ const WalletContainer = styled.div`
   justify-content: center;
 `;
 
+const WalletCopy = styled.div`
+  display: flex;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.7;
+  }
+  &:active {
+    opacity: 0.5;
+  }
+`;
+
 const WalletLine = styled.div`
   position: relative;
   margin: 10px;
@@ -40,13 +51,6 @@ const WalletValue = styled.div`
   margin: 0;
   font-size: 1.1rem;
   font-weight: 500;
-  cursor: pointer;
-  &:hover {
-    opacity: 0.7;
-  }
-  &:active {
-    opacity: 0.5;
-  }
 `;
 
 const IconWrapper = styled.div`
@@ -73,10 +77,12 @@ const WalletHeader: React.FC<Props> = ({
           <WalletLine>
             <WalletKey>Address</WalletKey>
             <WalletValue onClick={() => copyToClipBoard(walletId)}>
-              <span>{formatAddressShort(walletId)}</span>
-              <IconWrapper>
-                <Copy size={16} strokeWidth={2.5} />
-              </IconWrapper>
+              <WalletCopy>
+                <span>{formatAddressShort(walletId)}</span>
+                <IconWrapper>
+                  <Copy size={16} strokeWidth={2.5} />
+                </IconWrapper>
+              </WalletCopy>
             </WalletValue>
           </WalletLine>
           <WalletLine>
