@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Card = styled.div`
+  margin: 10px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -24,7 +25,7 @@ const NFTCardBody = styled.div`
   text-align: left;
 `;
 
-const NFTImg = styled.div<{ imageUrl: string }>`
+const NFTImg = styled.div<{ imageUrl: string; backgroundColor: string }>`
   background-image: ${(p) => `url(${p.imageUrl})`};
   background-size: cover;
   background-repeat: no-repeat;
@@ -32,7 +33,8 @@ const NFTImg = styled.div<{ imageUrl: string }>`
   height: 250px;
   width: 250px;
   // border-radius: 5px;
-  background-color: #f0f0f0;
+  background-color: ${(p) =>
+    p.backgroundColor ? p.backgroundColor : "#ccd9db"};
 `;
 
 const NFTTitle = styled.p`
@@ -63,7 +65,11 @@ const NFTCard: React.FC<Props> = ({ nft, handleNFTClick }) => {
   };
   return (
     <Card>
-      <NFTImg imageUrl={nft.image_preview_url} onClick={openDetails} />
+      <NFTImg
+        imageUrl={nft.image_preview_url}
+        onClick={openDetails}
+        backgroundColor={nft.background}
+      />
       <NFTCardBody>
         <NFTTitle onClick={openDetails}>{nft.name}</NFTTitle>
         <NFTSubtitle>{nft.asset_contract.name}</NFTSubtitle>

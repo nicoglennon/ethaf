@@ -3,11 +3,11 @@ import styled from "styled-components";
 import { dollarFormatter } from "../helpers/utils";
 
 const TokenSection = styled.div`
+  margin: 5px;
   display: flex;
-  width: 100%;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
+  padding: 15px;
   border-radius: 10px;
   &:hover {
     background-color: #f0f0f0;
@@ -23,10 +23,10 @@ const TokenSection = styled.div`
 const TokenNameAndLogo = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
 `;
 
 const TokenLogo = styled.img`
+  margin-right: 8px;
   width: 40px;
   height: 40px;
   border-radius: 50%;

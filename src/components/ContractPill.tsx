@@ -13,6 +13,7 @@ const ContractImgWrapper = styled.div`
 `;
 
 const Pill = styled.div<{ isSelected: boolean }>`
+  margin: 6px;
   border: ${(p) => (p.isSelected ? "3px solid #333" : "3px solid transparent")};
   display: flex;
   // font-size: 0.9em;
@@ -23,7 +24,6 @@ const Pill = styled.div<{ isSelected: boolean }>`
   border-radius: 12px;
   justify-content: flex-start;
   align-items: center;
-  gap: 6px;
   &:hover {
     background-color: #f0f0f0;
   }
@@ -34,7 +34,7 @@ const Pill = styled.div<{ isSelected: boolean }>`
   box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 10px;
 `;
 const ContractTitle = styled.p`
-  margin: 5px 5px 5px 0px;
+  margin: 5px 5px 5px 8px;
 `;
 
 interface Props {

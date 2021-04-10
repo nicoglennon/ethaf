@@ -7,7 +7,6 @@ import Trail from "./Trail";
 const ContractPillWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
   margin-bottom: 20px;
   justify-content: center;
 `;
@@ -16,7 +15,6 @@ const NFTsWrapper = styled.div`
   margin: auto;
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
   margin-bottom: 20px;
   align-items: flex-start;
   justify-content: center;

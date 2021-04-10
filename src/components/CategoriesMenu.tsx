@@ -8,7 +8,6 @@ const CategoriesWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
   background-color: #f0f0f0;
   border-radius: 15px;
   width: max-content;
@@ -16,13 +15,13 @@ const CategoriesWrapper = styled.div`
 `;
 
 const CategoryWrapper = styled.div<{ isSelected?: boolean }>`
+  margin: 5px;
   border-radius: 12px;
   align-items: center;
   padding: 12px 20px;
   width: max-content;
   display: flex;
   justify-content: center;
-  gap: 5px;
   color: ${(p) => (p.isSelected ? "#fff" : "#333")};
   background-color: ${(p) => (p.isSelected ? "#333" : null)};
   cursor: pointer;

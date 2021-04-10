@@ -7,11 +7,11 @@ interface Props {
   token: any;
 }
 const TokenSection = styled.div`
+  margin: 5px;
   display: flex;
-  width: 100%;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
+  padding: 15px;
   border-radius: 10px;
   &:hover {
     background-color: #f0f0f0;
@@ -27,7 +27,6 @@ const TokenSection = styled.div`
 const TokenNameAndLogo = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
 `;
 
 const TokenLogoWrapper = styled.div`
@@ -36,6 +35,7 @@ const TokenLogoWrapper = styled.div`
   border-radius: 50%;
   overflow: hidden;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 10px;
+  margin-right: 8px;
 `;
 
 const TokenSymbolAndName = styled.div`

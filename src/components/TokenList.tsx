@@ -7,7 +7,6 @@ import EthTokenLine from "./EthTokenLine";
 const TokenLineWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
   padding: 10px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 10px;

@@ -17,6 +17,7 @@ const InnerWrapper = styled.div`
 
 const AddyInput = styled.input`
   padding: 15px;
+  margin-bottom: 15px;
   font-family: inherit;
   font-size: 1.5rem;
   border: 3px solid transparent;
@@ -61,7 +62,6 @@ const AddyForm = styled.div`
   font-family: inherit;
   display: flex;
   flex-direction: column;
-  gap: 10px;
 `;
 
 const Footer = styled.div`

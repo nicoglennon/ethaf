@@ -5,19 +5,19 @@ import { X } from "react-feather";
 import Modal from "./Modal";
 import TraitPill from "./TraitPill";
 import Trail from "./Trail";
-import { ExternalLink } from "react-feather";
+import { Link } from "react-feather";
 import FallbackImage from "../assets/monocle.png";
 
 const NFTImg = styled.img`
   width: 100%;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 10px;
-  background-color: #f0f0f0;
+  background-color: #ccd9db;
+  margin-bottom: 20px;
 `;
 
 const NFTDetailsContent = styled.div`
   display: flex;
-  gap: 20px;
   flex-direction: column;
   text-align: left;
   overflow-wrap: break-word;
@@ -44,14 +44,12 @@ const NFTDetailsInfo = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  gap: 10px;
 `;
 
 const NFTContractDetailsInfo = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  gap: 15px;
 `;
 
 const NFTDescription = styled.div`
@@ -59,6 +57,7 @@ const NFTDescription = styled.div`
   flex-wrap: wrap;
   color: #3c42528c;
   font-size: 1.1rem;
+  margin-bottom: 10px;
 `;
 
 const CloseButton = styled.div`
@@ -79,6 +78,7 @@ const CloseButton = styled.div`
 const ModalHeader = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
 `;
 
 const ContractImgWrapper = styled.div`
@@ -93,22 +93,24 @@ const NFTContractDetailsTitle = styled.div`
   font-weight: 500;
   font-size: 1.2rem;
   color: #000;
+  margin-bottom: 10px;
 `;
 
 const NFTTraitsWrapper = styled.div`
   margin-top: 10px;
   display: flex;
-  gap: 5px;
   flex-wrap: wrap;
+  margin-bottom: 10px;
 `;
 
 const Separator = styled.hr`
   border: 1px solid #eee;
   width: 100%;
+  margin-bottom: 20px;
 `;
 const LinksSection = styled.div`
   display: flex;
-  gap: 15px;
+  margin-bottom: 10px;
 `;
 
 const CollectionExternalLink = styled.a`
@@ -116,7 +118,6 @@ const CollectionExternalLink = styled.a`
   color: #000;
   text-decoration: none;
   display: flex;
-  gap: 3px;
   align-items: center;
   justify-content: center;
   &:hover {
@@ -150,7 +151,7 @@ const NFTDetailsModal: React.FC<Props> = ({ nft, closeModal }) => {
         <NFTDetailsContent>
           <NFTImg src={nft.image_url} />
           <NFTDetailsInfo>
-            <div>
+            <div style={{ marginBottom: 10 }}>
               <NFTSubtitle>
                 {contract.name} #{shortenedId}
               </NFTSubtitle>
@@ -181,8 +182,8 @@ const NFTDetailsModal: React.FC<Props> = ({ nft, closeModal }) => {
                     target="_blank"
                     referrerPolicy="no-referrer"
                   >
-                    <span>Website</span>
-                    <ExternalLink size={18} />
+                    <span style={{ marginRight: 4 }}>Website</span>
+                    <Link size={18} />
                   </CollectionExternalLink>
                 </LinksSection>
               </NFTContractDetailsInfo>

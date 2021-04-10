@@ -8,17 +8,16 @@ const WalletContainer = styled.div`
   max-width: 100%;
   margin: auto;
   display: flex;
-  gap: 10px;
   flex-wrap: wrap;
   justify-content: center;
 `;
 
 const WalletLine = styled.div`
   position: relative;
+  margin: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 10px;
   padding: 10px 20px 15px 20px;
   border-radius: 10px;
@@ -27,6 +26,7 @@ const WalletLine = styled.div`
 const WalletKey = styled.p`
   padding: 8px 10px;
   margin: 0;
+  margin-bottom: 5px;
   border-radius: 8px;
   background-color: #eee;
   font-size: 0.8rem;
@@ -37,15 +37,9 @@ const WalletKey = styled.p`
 const WalletValue = styled.div`
   display: flex;
   align-items: center;
-  gap: 5px;
   margin: 0;
   font-size: 1.1rem;
   font-weight: 500;
-`;
-
-const IconWrapper = styled.div`
-  display: flex;
-  align-items: center;
   cursor: pointer;
   &:hover {
     opacity: 0.7;
@@ -53,6 +47,12 @@ const IconWrapper = styled.div`
   &:active {
     opacity: 0.5;
   }
+`;
+
+const IconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 4px;
 `;
 
 interface Props {
@@ -72,14 +72,10 @@ const WalletHeader: React.FC<Props> = ({
         <Trail>
           <WalletLine>
             <WalletKey>Address</WalletKey>
-            <WalletValue>
+            <WalletValue onClick={() => copyToClipBoard(walletId)}>
               <span>{formatAddressShort(walletId)}</span>
               <IconWrapper>
-                <Copy
-                  size={16}
-                  onClick={() => copyToClipBoard(walletId)}
-                  strokeWidth={2.5}
-                />
+                <Copy size={16} strokeWidth={2.5} />
               </IconWrapper>
             </WalletValue>
           </WalletLine>

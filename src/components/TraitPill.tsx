@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 const PillWrapper = styled.div`
   padding: 10px;
+  margin-right: 5px;
+  margin-bottom: 5px;
   display: flex;
   flex-direction: column;
   background-color: #eee;
