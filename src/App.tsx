@@ -8,7 +8,7 @@ import Alien from "./assets/alien.png";
 
 const AppWrapper = styled.div`
   padding: 40px 30px 60px 30px;
-  max-width: 850px;
+  max-width: 875px;
   margin: auto;
   text-align: center;
   min-height: 100vh;
