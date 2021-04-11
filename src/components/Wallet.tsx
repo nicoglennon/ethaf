@@ -118,9 +118,9 @@ const Wallet: React.FC<Props> = () => {
           {/* <title>{ensAddress || "eth.af"}</title>
           <meta name="twitter:title" content={ensAddress || "eth.af"} />
           <meta property="og:title" content={ensAddress || "eth.af"} /> */}
-          <title>{walletParam || "eth.af"}</title>
-          <meta name="twitter:title" content={walletParam || "eth.af"} />
-          <meta property="og:title" content={walletParam || "eth.af"} />
+          <title>{ensAddress || "eth.af"}</title>
+          <meta name="twitter:title" content={ensAddress || "eth.af"} />
+          <meta property="og:title" content={ensAddress || "eth.af"} />
         </Helmet>
         {loadingWalletHeader || loadingTokens ? (
           <div>
