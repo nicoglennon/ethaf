@@ -58,14 +58,14 @@ const AddySubmit = styled.button`
   transition: all 200ms ease;
 `;
 
-const AddyForm = styled.div`
+const AddyForm = styled.form`
   font-family: inherit;
   display: flex;
   flex-direction: column;
 `;
 
 const Footer = styled.div<{ marginTop: number }>`
-  margin: 10px auto;
+  margin: 0px auto;
   color: #bbb;
   font-size: 1.25rem;
   margin-top: ${(p) => `${p.marginTop}px`};
@@ -92,43 +92,39 @@ const Hero: React.FC = () => {
   let history = useHistory();
   const [addyInput, setAddyInput] = useState<string>("");
 
-  const handleSubmit = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const cleanedAddress = cleanAddress(addyInput);
-    if (cleanedAddress) {
-      history.push(`/${cleanedAddress}`);
+    if (addyInput) {
+      const cleanedAddress = cleanAddress(addyInput);
+      if (cleanedAddress) {
+        history.push(`/${cleanedAddress}`);
+      }
     }
   };
   return (
     <HeroWrapper>
       <InnerWrapper>
         <Trail>
-          <AddyForm>
+          <AddyForm onSubmit={handleSubmit}>
             <AddyInput
               type="text"
               value={addyInput}
               onChange={(e) => {
                 setAddyInput(e.target.value);
               }}
-              placeholder="addy / ENS"
+              placeholder="address / ens"
               name="addy"
             />
-            <AddySubmit
-              type="submit"
-              disabled={!addyInput}
-              onClick={handleSubmit}
-            >
-              lurk
+            <AddySubmit type="submit" disabled={!addyInput}>
+              search
             </AddySubmit>
           </AddyForm>
-          <Footer marginTop={30}>
+          <Footer marginTop={35}>
             <div>eth.af ©2021</div>
           </Footer>
           <Footer marginTop={0}>
             <div>
-              made by{" "}
+              by{" "}
               <NicoLink href="https://twitter.com/nicoglennon" target="_blank">
                 nico
               </NicoLink>
