@@ -20,7 +20,7 @@ const fetchAllTokens = async (
   address: string,
   offset: number
 ): Promise<Array<any>> => {
-  const url = `https://api.opensea.io/api/v1/assets?exclude_currencies=true&owner=${address}&offset=${offset}&limit=${TOKENS_LIMIT_TOTAL}`;
+  const url = `https://api.opensea.io/api/v1/assets?&owner=${address}&offset=${offset}&limit=${TOKENS_LIMIT_TOTAL}`;
   const data = await api.get(url);
   const erc721s = get(data, "data.assets", null);
   if (erc721s === null) {
