@@ -64,12 +64,20 @@ const AddyForm = styled.div`
   flex-direction: column;
 `;
 
-const Footer = styled.div`
-  margin: 20px auto;
+const Footer = styled.div<{ marginTop: number }>`
+  margin: 10px auto;
   color: #bbb;
   font-size: 1.25rem;
+  margin-top: ${(p) => `${p.marginTop}px`};
 `;
 
+const NicoLink = styled.a`
+  color: #666 !important;
+  transition: all 200ms ease;
+  &:hover {
+    color: #222 !important;
+  }
+`;
 const cleanAddress = (addy: string | undefined) => {
   if (!addy) {
     return null;
@@ -112,10 +120,20 @@ const Hero: React.FC = () => {
               disabled={!addyInput}
               onClick={handleSubmit}
             >
-              Lurk
+              lurk
             </AddySubmit>
           </AddyForm>
-          <Footer>eth.af ©2021</Footer>
+          <Footer marginTop={30}>
+            <div>eth.af ©2021</div>
+          </Footer>
+          <Footer marginTop={0}>
+            <div>
+              made by{" "}
+              <NicoLink href="https://twitter.com/nicoglennon" target="_blank">
+                nico
+              </NicoLink>
+            </div>
+          </Footer>
         </Trail>
       </InnerWrapper>
     </HeroWrapper>
