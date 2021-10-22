@@ -33,7 +33,7 @@ export default function App() {
         </Trail>
 
         <Switch>
-          <Route path="/:walletParam">
+          <Route path="/:walletParam/:initialContract?/:initialNft?">
             <Wallet />
           </Route>
           <Route path="/">
