@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { ethers } from "ethers";
 import styled from "styled-components";
@@ -31,7 +31,9 @@ interface Params {
 const WalletWrapper = styled.div``;
 
 const Wallet: React.FC<Props> = () => {
-  const { walletParam, initialContract, initialNft } = useParams<Params>();
+  const { walletParam, initialContract } = useParams<Params>();
+  const history = useHistory();
+
   const [walletId, setWalletId] = useState<string>("");
   const [ensAddress, setEnsAddress] = useState<string>();
   const [ethBalance, setEthBalance] = useState<string>("-");
@@ -102,11 +104,13 @@ const Wallet: React.FC<Props> = () => {
 
   const handleContractClick = (contractName: string): void => {
     setSelectedContract(contractName);
+    history.push(`/${walletParam}/${contractName}`);
   };
 
   const handleSelectCategory = (newCategory: string): void => {
     setSelectedCategory(newCategory);
     setSelectedContract(undefined);
+    history.push(`/${walletParam}`)
   };
 
   const handleNFTClick = (nftObj: any) => {
