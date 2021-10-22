@@ -39,8 +39,12 @@ const Collections: React.FC<Props> = ({
   handleContractClick,
   handleNFTClick,
 }) => {
-  const nftKeys = Object.keys(NFTs);
-  nftKeys.sort();
+  const nftKeys = Object.keys(NFTs).sort();
+
+  const foundContract = selectedContract ? 
+    NFTs[selectedContract]
+    : undefined;
+
   return (
     <>
       <ContractPillWrapper>
@@ -64,11 +68,11 @@ const Collections: React.FC<Props> = ({
         id="contractTitleScroll"
         style={{ margin: 10, height: 10, width: "100%" }}
       />
-      {selectedContract && (
+      {foundContract && (
         <>
           <Trail key={selectedContract}>
             <NFTsWrapper>
-              {NFTs[selectedContract].map((nft: any) => (
+              {foundContract.map((nft: any) => (
                 <NFTCard
                   nft={nft}
                   key={nft.id}

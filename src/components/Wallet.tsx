@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { ethers } from "ethers";
 import styled from "styled-components";
@@ -24,12 +24,16 @@ interface Props {
 }
 interface Params {
   walletParam: string;
+  initialContract: string;
+  initialNft: string;
 }
 
 const WalletWrapper = styled.div``;
 
 const Wallet: React.FC<Props> = () => {
-  const { walletParam } = useParams<Params>();
+  const { walletParam, initialContract } = useParams<Params>();
+  const history = useHistory();
+
   const [walletId, setWalletId] = useState<string>("");
   const [ensAddress, setEnsAddress] = useState<string>();
   const [ethBalance, setEthBalance] = useState<string>("-");
@@ -48,10 +52,12 @@ const Wallet: React.FC<Props> = () => {
   useEffect(() => {
     const getWeb3 = async () => {
       let addressParam;
+
       const provider = new ethers.providers.InfuraProvider(
         1,
         process.env.REACT_APP_INFURA_ID
       );
+
       if (walletParam.length === 42) {
         setWalletId(walletParam);
         addressParam = walletParam;
@@ -63,6 +69,7 @@ const Wallet: React.FC<Props> = () => {
         setWalletId(walletAddress);
         setEnsAddress(addressParam);
       }
+
       setLoadingWalletHeader(false);
     };
     getWeb3();
@@ -86,15 +93,24 @@ const Wallet: React.FC<Props> = () => {
       getNFTs(walletId);
       getERC20s(walletId);
     }
-  }, [walletId]);
+  }, [walletId, initialContract, selectedContract]);
+
+  useEffect(() => {
+    if (selectedContract || !initialContract) { return }
+
+    setSelectedCategory(Categories.COLLECTIONS);
+    setSelectedContract(initialContract);
+  }, [NFTs, initialContract, selectedContract]);
 
   const handleContractClick = (contractName: string): void => {
     setSelectedContract(contractName);
+    history.push(`/${walletParam}/${contractName}`);
   };
 
   const handleSelectCategory = (newCategory: string): void => {
     setSelectedCategory(newCategory);
     setSelectedContract(undefined);
+    history.push(`/${walletParam}`)
   };
 
   const handleNFTClick = (nftObj: any) => {
@@ -150,7 +166,7 @@ const Wallet: React.FC<Props> = () => {
                 ) : (
                   <Collections
                     NFTs={NFTs}
-                    selectedContract={selectedContract}
+                    selectedContract={selectedContract || initialContract}
                     handleContractClick={handleContractClick}
                     handleNFTClick={handleNFTClick}
                   />
