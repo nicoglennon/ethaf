@@ -36,7 +36,7 @@ const WalletLine = styled.div`
 `;
 const WalletKey = styled.p`
   padding: 8px 10px;
-  margin: 0px;
+  margin: 0;
   margin-bottom: 5px;
   border-radius: 8px;
   background-color: #eee;
@@ -68,7 +68,7 @@ interface Props {
 const WalletHeader: React.FC<Props> = ({
   walletId,
   ensAddress,
-  ethBalance
+  ethBalance,
 }) => {
   return (
     <>

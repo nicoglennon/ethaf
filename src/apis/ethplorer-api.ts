@@ -16,11 +16,9 @@ const api = axios.create({
   timeout: 20000, // 20 secs
 });
 
-const api_key = 'EK-jZuLU-aTpyWqy-bdUGC';
 
 export const apiGetERC20Tokens = async (address: string) => {
-  // const url = `https://api.ethplorer.io/getAddressInfo/${address}?apiKey=${process.env.REACT_APP_ETHPLORER_KEY}`;
-  const url = `https://api.ethplorer.io/getAddressInfo/${address}?apiKey=${api_key}`;
+  const url = `https://api.ethplorer.io/getAddressInfo/${address}?apiKey=${process.env.REACT_APP_ETHPLORER_KEY}`;
   const data = await api.get(url);
   const eth = get(data, "data.ETH", null);
   const erc20s = get(data, "data.tokens", []);
