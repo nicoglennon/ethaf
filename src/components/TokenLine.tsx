@@ -81,6 +81,7 @@ const TokenLine: React.FC<Props> = ({ token }) => {
       decimals,
       price,
       address,
+      imageUrl
     },
     balance,
   } = token;
@@ -95,7 +96,7 @@ const TokenLine: React.FC<Props> = ({ token }) => {
       <TokenNameAndLogo>
         <TokenLogoWrapper>
           <ReactImageFallback
-            src={`https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${address}/logo.png`}
+            src={imageUrl}
             fallbackImage={FallbackImage}
             alt="Token Image"
             style={{ width: 40, height: 40 }}
