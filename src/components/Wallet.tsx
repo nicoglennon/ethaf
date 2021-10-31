@@ -13,6 +13,7 @@ import Spinner from "./Spinner/Spinner";
 import NFTDetailsModal from "./NFTDetailsModal";
 import { apiGetAccountUniqueTokens } from "../apis/opensea-api";
 import { apiGetERC20Tokens } from "../apis/ethplorer-api";
+import { apiGetPolygonTokens } from "../apis/zapperfi-api";
 import { Categories } from "../helpers/constants";
 declare global {
   interface Window {
@@ -31,11 +32,12 @@ const WalletWrapper = styled.div``;
 const Wallet: React.FC<Props> = () => {
   const { walletParam } = useParams<Params>();
   const [walletId, setWalletId] = useState<string>("");
-  const [ensAddress, setEnsAddress] = useState<string>();
+  const [ensAddress, setEnsAddress] = useState<string>("");
   const [ethBalance, setEthBalance] = useState<string>("-");
   const [ethPrice, setEthPrice] = useState(0);
   const [NFTs, setNFTs] = useState<object>();
   const [tokens, setTokens] = useState<Array<object>>();
+  // const [polygonTokens, setPolygonTokens] = useState<Array<object>>();
   const [selectedCategory, setSelectedCategory] = useState<string>(
     Categories.COLLECTIONS
   );
@@ -56,12 +58,16 @@ const Wallet: React.FC<Props> = () => {
         setWalletId(walletParam);
         addressParam = walletParam;
         const ensAddy = await provider.lookupAddress(addressParam);
-        setEnsAddress(ensAddy);
+        if (ensAddy) {
+          setEnsAddress(ensAddy);
+        }
       } else {
         addressParam = walletParam + ".eth";
         const walletAddress = await provider.resolveName(addressParam);
-        setWalletId(walletAddress);
-        setEnsAddress(addressParam);
+        if (walletAddress){
+          setWalletId(walletAddress);
+          setEnsAddress(addressParam);
+        }
       }
       setLoadingWalletHeader(false);
     };
@@ -76,12 +82,15 @@ const Wallet: React.FC<Props> = () => {
     };
 
     const getERC20s = async (wId: string) => {
-      const [eth, tokens] = await apiGetERC20Tokens(wId);
+      const [eth, ethTokens] = await apiGetERC20Tokens(wId);
       setEthPrice(eth.price.rate);
       setEthBalance(Number(eth.balance).toFixed(5).toString());
-      setTokens(tokens);
+      const polygonTokens = await apiGetPolygonTokens(wId);
+      setTokens([...ethTokens, ...polygonTokens]);
       setLoadingTokens(false);
     };
+
+
     if (walletId) {
       getNFTs(walletId);
       getERC20s(walletId);
