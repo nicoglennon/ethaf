@@ -12,6 +12,7 @@ const TOKENS_LIMIT_TOTAL = 50;
 const api = axios.create({
   headers: {
     Accept: "application/json",
+    "X-API-KEY": "",
   },
   timeout: 20000, // 20 secs
 });
